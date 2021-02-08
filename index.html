@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/sideMenu.css">
     <link rel="stylesheet" href="css/clock.css">
+    <link rel="stylesheet" href="css/greeting.css">
 </head>
 <body>
     <div id="container">
@@ -17,13 +18,16 @@
             <div id="settingBtn" class="sideMenuBtn"><i class="fas fa-wrench"></i></div>
         </div>
         <div id="bgText">
-            <div id="test">
             <div id="clock"></div>
-            <div id="greeting"></div>
+            <div id="greeting">
+                <form id="greetingForm" class="js-form"><input id="greetingInput" type="text" placeholder="What is your name?"></form>
+                <div id="greetingText"></div>
+            </div>
             <div id="message"></div>
-        </div></div>
+        </div>
     </div>
     
     <script src="js/clock.js"></script>
+    <script src="js/greeting.js"></script>
 </body>
 </html>
