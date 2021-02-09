@@ -42,14 +42,6 @@ function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
-function deleteToDo(event) {
-    const btn = event.target;
-}
-
-function modifyToDo() {
-
-}
-
 function handleClickCheckBox(event) {
     const li = event.target.parentNode;
     toDoContent.removeChild(li);
@@ -64,18 +56,23 @@ function handleClickCheckBox(event) {
     saveToDos();
 }
 
-//list만들어 append
+function handleClickDeleteBtn(event) {
+    const li = event.target.parentNode;
+    toDoContent.removeChild(li);
+    filterToDo(li.id);
+}
+
 function paintToDo (toDo) {
     const li = document.createElement("li");
     const checkBox = document.createElement("div");
     const toDoText = document.createElement("div");
-    const toolBox = document.createElement("div");
+    const delBtn = document.createElement("div");
 
     li.classList.add("todo");
     li.id = toDo.id;
     checkBox.classList.add("check-box");
     toDoText.classList.add("todo-text");
-    toolBox.classList.add("tool-box");
+    delBtn.classList.add("delete-btn");
 
     if (toDo.status == 0) {
         checkBox.innerText = "⬜️";
@@ -86,16 +83,16 @@ function paintToDo (toDo) {
         checkBox.classList.add("1");
     }
     checkBox.addEventListener("click", handleClickCheckBox);
+    delBtn.addEventListener("click", handleClickDeleteBtn);
     toDoText.innerText = toDo.text;
-    toolBox.innerText = "▫️▫️▫️";
+    delBtn.innerText = "✂️";
 
     li.appendChild(checkBox);
     li.appendChild(toDoText);
-    li.appendChild(toolBox);
+    li.appendChild(delBtn);
     toDoContent.appendChild(li);
 }
 
-//localstorage에서 데이터 불러와 status 에 맞게 paintToDo
 function loadToDos(status) {
     console.log(typeof(status));
     const parsedToDos = JSON.parse(localStorage.getItem(TODOS_LS));

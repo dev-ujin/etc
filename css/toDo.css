@@ -20,7 +20,7 @@
 }
 
 .todo:hover {
-    background-color:darkgray;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);
 }
 
 .check-box {
@@ -32,7 +32,10 @@
     width: 80%;
 }
 
-.tool-box {
-    width: 10%;
+.delete-btn {
+    width: auto;
     cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 100%;
+    border: 1px solid #000000;
 }
