@@ -1,0 +1,41 @@
+
+
+.status {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+#in-progress, #completed {
+    margin-left: 1rem;
+    background-color: #e5e5e5;
+}
+
+.todo {
+    display: flex;
+    list-style: none;
+    font-size: 1.0rem;
+    padding: 1.0rem;
+}
+
+.todo:hover {
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);
+}
+
+.check-box {
+    width: 10%;
+    cursor: pointer;
+}
+
+.todo-text {
+    width: 80%;
+}
+
+.delete-btn {
+    width: auto;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 100%;
+    border: 1px solid #000000;
+}
