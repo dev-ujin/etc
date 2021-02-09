@@ -26,7 +26,20 @@
             <div id="message"></div>
         </div>
         <div id="sideBoards">
-            <div id="toDoBoard" class="side-board"><div class="side-board-content"></div></div>
+            <!--To Do-->
+            <div id="toDoBoard" class="side-board">
+                <div id="toDoBoardInner" class="side-board-inner">
+                    <div class="side-board-title"><span>To Do</span></div>
+                    <form id="toDoForm" class="js-form">
+                        <input id="toDoInput" class="js-input" type="text" placeholder="Write a to do">
+                    </form>
+                    <div class="status">
+                        <span id="in-progress" class="button">⬜️진행중</span>
+                        <span id="completed" class="button">⬛️완료</span>
+                    </div>
+                    <div id="toDoContent" class="side-board-content"></div>
+                </div>
+            </div>
         </div>
     </div>
     
