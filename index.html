@@ -13,10 +13,10 @@
 <body>
     <div id="container">
         <div id="sideMenu">
-            <div id="toDoBtn" class="sideMenuBtn"><i class="fas fa-clipboard-list"></i></div>
-            <div id="bookmarkBtn" class="sideMenuBtn"><i class="fas fa-star"></i></div>
-            <div id="worldBtn" class="sideMenuBtn"><i class="fas fa-globe"></i></div>
-            <div id="settingBtn" class="sideMenuBtn"><i class="fas fa-wrench"></i></div>
+            <div id="toDoBtn" class="side-menu-btn"><i class="fas fa-clipboard-list"></i></div>
+            <div id="bookmarkBtn" class="side-menu-btn"><i class="fas fa-star"></i></div>
+            <div id="worldBtn" class="side-menu-btn"><i class="fas fa-globe"></i></div>
+            <div id="settingBtn" class="side-menu-btn"><i class="fas fa-wrench"></i></div>
         </div>
         <div id="bgText">
             <div id="clock"></div>
@@ -56,6 +56,17 @@
                     <div id="bookmarkContent" class="side-board-content"></div>
                 </div>
             </div>
+            <!--World-->
+            <div id="worldBoard" class="side-board">
+                <div id="worldBoardInner" class="side-board-inner">
+                    <div class="side-board-title"><span>World</span></div>
+                    <form id="worldForm" class="js-form">
+                        <input id="worldInput" class="js-input" type="text" placeholder="Write an city name">
+                        <input type="submit" class="js-submit" value="▶️">
+                    </form>
+                    <div id="worldContent" class="side-board-content"></div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>
@@ -63,5 +74,6 @@
     <script src="js/greeting.js"></script>
     <script src="js/toDo.js"></script>
     <script src="js/bookmark.js"></script>
+    <script src="js/world.js"></script>
 </body>
 </html>
