@@ -2,7 +2,8 @@ const toDoBoard = document.querySelector("#toDoBoard");
 const toDoContent = document.querySelector("#toDoContent");
 const toDoForm = document.querySelector("#toDoForm");
 const toDoInput = document.querySelector("#toDoInput");
-const menuBtn = document.querySelector("#toDoBtn");
+const toDoSubmit = document.querySelector("#toDoSubmit");
+const toDoBtn = document.querySelector("#toDoBtn");
 const inProgressBtn = document.querySelector("#in-progress");
 const completedBtn = document.querySelector("#completed");
 const SHOW = "side-board-show";
@@ -10,7 +11,7 @@ const HIDE = "side-board-hide";
 const TODOS_LS = "toDos";
 
 let toDos = [];
-let click = 0;
+let toDoClick = 0;
 let mode = 0; //if mode is 0, it means in progress
 
 function findToDo(id) {
@@ -105,24 +106,24 @@ function loadToDos(status) {
     }
 }
 
-function drawBoard() {
+function drawToDoBoard() {
     loadToDos(0);
     toDoBoard.classList.add(HIDE);
 }
-function handleClickMenu() {
-    if (click == 0) {
-        click = 1;
+function handleClickToDo() {
+    if (toDoClick == 0) {
+        toDoClick = 1;
         toDoBoard.classList.remove(HIDE);
         toDoBoard.classList.add(SHOW);
     }
-    else if(click == 1) {
-        click = 0;
+    else if(toDoClick == 1) {
+        toDoClick = 0;
         toDoBoard.classList.remove(SHOW);
         toDoBoard.classList.add(HIDE);
     }
 }
 
-function handleSubmit(event) {
+function handleSubmitToDo(event) {
     event.preventDefault();
     const toDo = {
         id: toDos.length+1,
@@ -140,21 +141,25 @@ function handleClickStatus(event) {
     if (event.target.id == "in-progress") {
         toDoContent.textContent = "";
         loadToDos(0);
-        toDoInput.style = "visibility: visible;"
+        toDoInput.style = "visibility: visible;";
+        toDoSubmit.style = "visibility: visible;";
+
     }
     else if (event.target.id == "completed") {
         toDoContent.textContent = "";
         loadToDos(1);
-        toDoInput.style = "visibility: hidden;"
+        toDoInput.style = "visibility: hidden;";
+        toDoSubmit.style = "visibility: hidden;";
     }
 }
 
 function init() {
-    drawBoard();
-    menuBtn.addEventListener("click", handleClickMenu);
+    getData(TODOS_LS, toDos);
+    drawToDoBoard();
+    toDoBtn.addEventListener("click", handleClickToDo);
     inProgressBtn.addEventListener("click", handleClickStatus);
     completedBtn.addEventListener("click", handleClickStatus);
-    toDoForm.addEventListener("submit", handleSubmit);
+    toDoForm.addEventListener("submit", handleSubmitToDo);
 }
 
 init();

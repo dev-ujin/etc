@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="css/clock.css">
     <link rel="stylesheet" href="css/greeting.css">
     <link rel="stylesheet" href="css/toDo.css">
+    <link rel="stylesheet" href="css/bookmark.css">
 </head>
 <body>
     <div id="container">
         <div id="sideMenu">
             <div id="toDoBtn" class="sideMenuBtn"><i class="fas fa-clipboard-list"></i></div>
-            <div id="bookMarkBtn" class="sideMenuBtn"><i class="fas fa-star"></i></div>
+            <div id="bookmarkBtn" class="sideMenuBtn"><i class="fas fa-star"></i></div>
             <div id="worldBtn" class="sideMenuBtn"><i class="fas fa-globe"></i></div>
             <div id="settingBtn" class="sideMenuBtn"><i class="fas fa-wrench"></i></div>
         </div>
@@ -32,6 +33,7 @@
                     <div class="side-board-title"><span>To Do</span></div>
                     <form id="toDoForm" class="js-form">
                         <input id="toDoInput" class="js-input" type="text" placeholder="Write a to do">
+                        <input id="toDoSubmit" type="submit" class="js-submit" value="▶️">
                     </form>
                     <div class="status">
                         <span id="in-progress" class="button">⬜️진행중</span>
@@ -40,11 +42,26 @@
                     <div id="toDoContent" class="side-board-content"></div>
                 </div>
             </div>
+            <!--Bookmark-->
+            <div id="bookmarkBoard" class="side-board">
+                <div id="bookmarkBoardInner" class="side-board-inner">
+                    <div class="side-board-title"><span>Bookmark</span></div>
+                    <div class="color-choice"></div>
+                    <form id="bookmarkForm" class="js-form">
+                        <input id="bookmarkUrlInput" class="js-input bookmark-input" type="text" placeholder="🔗  Write an url">
+                        <input id="bookmarkNameInput"  class="js-input bookmark-input" type="text" placeholder="🟠  Write a name(max.6)">
+                        <input id="bookmarkColorInput" type="hidden">
+                        <input type="submit" class="js-submit" value="▶️">
+                    </form>
+                    <div id="bookmarkContent" class="side-board-content"></div>
+                </div>
+            </div>
         </div>
     </div>
-    
+    <script src="js/script.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/greeting.js"></script>
     <script src="js/toDo.js"></script>
+    <script src="js/bookmark.js"></script>
 </body>
 </html>
