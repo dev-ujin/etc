@@ -16,19 +16,18 @@ let mode = 0; //if mode is 0, it means in progress
 
 function findToDo(id) {
     const parsedToDos = JSON.parse(localStorage.getItem(TODOS_LS));
-    let text="", status=0, toDo={};
     if (parsedToDos != null) {
         parsedToDos.forEach(function (parsedToDo) {
             if (parsedToDo.id == id) {
-                toDo = {
+                const toDo = {
                     id: id,
                     text: parsedToDo.text,
                     status: parsedToDo.status
                 };
+                return toDo;
             }
         });
     }
-    return toDo;
 }
 
 function filterToDo(id) {
@@ -111,12 +110,12 @@ function drawToDoBoard() {
     toDoBoard.classList.add(HIDE);
 }
 function handleClickToDo() {
-    if (toDoClick == 0) {
+    if (toDoClick === 0) {
         toDoClick = 1;
         toDoBoard.classList.remove(HIDE);
         toDoBoard.classList.add(SHOW);
     }
-    else if(toDoClick == 1) {
+    else if(toDoClick === 1) {
         toDoClick = 0;
         toDoBoard.classList.remove(SHOW);
         toDoBoard.classList.add(HIDE);
