@@ -93,7 +93,7 @@ body, html {
 
 .side-board-hide {
     visibility: hidden;
-    transform: translate3d(400px, 0, 0);
+    transform: translate3d(450px, 0, 0);
     transition: transform ease .35s;
 }
 
