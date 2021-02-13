@@ -16,19 +16,21 @@ function saveWorlds() {
 function saveBuffer() {
     localStorage.setItem(BUFFER_LS, JSON.stringify(buffer));
 }
-function filterWorld(lat, lon, id) {
+function filterWorld(id) {
     const cleanWorlds = worlds.filter(function(world) {
-        return ((world.lat !== parseInt(lat)) && (world.lon !== parseInt(lon)) && (world.id !== parseInt(id)));
+        return world.id !== id;
     });
+    console.log(cleanWorlds);
     worlds = cleanWorlds;
     saveWorlds();
 }
 
-function parseWeather(json) {
+function parseWeather(json, world) {
     const dailyWeather = {
+        id: world.id,
         lat: json.lat,
         lon: json.lon,
-        id: json.daily[0].dt,
+        utc: json.daily[0].dt,
         days: [
             {
                 min_temp: json.daily[1].temp.min,
@@ -62,7 +64,7 @@ function parseWeather(json) {
             },
             {
                 min_temp: json.daily[6].temp.min,
-                maxTemp: json.daily[6].temp.max,
+                max_temp: json.daily[6].temp.max,
                 main: json.daily[6].weather[0].main,
                 icon: json.daily[6].weather[0].icon 
             },
@@ -119,27 +121,28 @@ function getWeather(world, currentDes, currentIcon, li) {
         currentIcon.style = `background-image: url("http://openweathermap.org/img/wn/${json.current.weather[0].icon}@2x.png");`;
             
         const parsedWorlds = JSON.parse(localStorage.getItem(BUFFER_LS));
-        parsedWorlds.forEach(function (world) {
+        parsedWorlds.forEach(function (parsedWorld) {
             //console.log(world.id);
-            if ((world.lat === json.lat) && (world.lon === json.lon)) {
-                if (world.id === json.daily[0].dt) {
+            if (world.id === parsedWorld.id) {
+            //if ((world.lat === json.lat) && (world.lon === json.lon)) {
+                if (parsedWorld.utc === json.daily[0].dt) {
                     for (let i=0 ; i<7 ; i++) {
                         //console.log("her");
                         const daily = document.createElement("div");
                         const dailyDes = document.createElement("div");
                         daily.classList.add("daily-icon");
                         dailyDes.classList.add("daily-des");
-                        dailyDes.textContent = `⬇️${world.days[i].min_temp}\n⬆️${world.days[i].max_temp}`;
+                        dailyDes.textContent = `⬇️${parsedWorld.days[i].min_temp}\n⬆️${parsedWorld.days[i].max_temp}`;
                         
-                        daily.style = `background-image: url("http://openweathermap.org/img/wn/${world.days[i].icon}@2x.png")`;
+                        daily.style = `background-image: url("http://openweathermap.org/img/wn/${parsedWorld.days[i].icon}@2x.png")`;
                         
                         daily.appendChild(dailyDes);
                         li.appendChild(daily);
                     }
                 }
                 else {
-                    filterWorld(world.lat, world.lon, world.id);
-                    buffer.push(parseWeather(json));
+                    filterWorld(parsedWorld.id);
+                    buffer.push(parseWeather(json, world));
                     saveBuffer();
                 }
             }
@@ -214,8 +217,8 @@ function getTimeZone(oldWorld) {
         //console.log(json);
         filterWorld(oldWorld.id);
         worlds.push(world);
-        saveWorlds(worlds);
-        const dailyWeather = parseWeather(json);
+        saveWorlds();
+        const dailyWeather = parseWeather(json, world);
         buffer.push(dailyWeather);
         saveBuffer();
         paintWorld(world);
@@ -223,24 +226,6 @@ function getTimeZone(oldWorld) {
 
     
 }
-/*function findWorldByName(cityName) {
-    const parsedWorlds = JSON.parse(localStorage.getItem(WORLDS_LS));
-    if (parsedWorlds != null) {
-        parsedWorlds.forEach(function (parsedWorld) {
-            if (parsedWorld.city_name == cityName) {
-                const world = {
-                    id: parsedWorld.id,
-                    city_name: parsedWorld.city_name,
-                    lat: parsedWorld.lat,
-                    lon: parsedWorld.lon,
-                    timezone: parsedWorld.timezone,
-                    timezone_offset: parsedWorld.timezone_offset
-                };
-                return world;
-            }
-        });
-    }
-}*/
 
 function getGeolocation(cityName) {
     fetch(

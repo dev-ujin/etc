@@ -7,6 +7,7 @@ const colorChoice = document.querySelector(".color-choice");
 const BOOKMARKS_LS = "bookmarks";
 let bookmarkClick = 0;
 let bookmarks = [];
+let countBookmark;
 
 function saveBookmarks() {
     localStorage.setItem(BOOKMARKS_LS, JSON.stringify(bookmarks));
@@ -23,7 +24,7 @@ function handleClickColorBall(event) {
             colorBall.classList.add("color-ball-selected");
         }
     });
-    bookmarkColorInput.value = colorCode;
+    bookmarkColorInput.value = event.target.id;
 }
 // 
 function drawBookMarkColorChoice() {
@@ -84,6 +85,12 @@ function loadBookmarks() {
 }
 
 function drawBookmarkBoard() {
+    if (bookmarks.length === 0) {
+        countBookmark= 0;
+    }
+    else {
+        countBookmark = bookmarks[bookmarks.length - 1].id + 1;
+    }
     drawBookMarkColorChoice();
     loadBookmarks();
     bookmarkBoard.classList.add(HIDE);

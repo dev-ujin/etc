@@ -21,37 +21,39 @@
             <div id="settingBtn" class="side-menu-btn"><i class="fas fa-wrench"></i></div>
         </div>
         <div id="bgText">
-            <div id="clock"></div>
-            <div id="greeting">
-                <form id="greetingForm" class="js-form"><input id="greetingInput" type="text" placeholder="What is your name?"></form>
-                <div id="greetingText"></div>
+            <div id="bgTextInner">
+                <div id="clock"></div>
+                <div id="greeting">
+                    <form id="greetingForm" class="js-form"><input id="greetingInput" class="js-input" type="text" placeholder="🙋🏻 What is your name?"></form>
+                    <div id="greetingText"></div>
+                </div>
+                <div id="message"></div>
             </div>
-            <div id="message"></div>
         </div>
         <div id="sideBoards">
             <!--To Do-->
             <div id="toDoBoard" class="side-board">
                 <div id="toDoBoardInner" class="side-board-inner">
-                    <div class="side-board-title"><span>To Do</span></div>
+                    <div class="side-board-title"><span>TO DO</span></div>
+                    <div class="status">
+                        <span id="inProgress" class="button">⬜️ YET</span>
+                        <span id="completed" class="button">⬛️ DONE</span>
+                    </div>
                     <form id="toDoForm" class="js-form">
-                        <input id="toDoInput" class="js-input" type="text" placeholder="Write a to do">
+                        <input id="toDoInput" class="js-input" type="text" placeholder="📋 task">
                         <input id="toDoSubmit" type="submit" class="js-submit" value="▶️">
                     </form>
-                    <div class="status">
-                        <span id="in-progress" class="button">⬜️진행중</span>
-                        <span id="completed" class="button">⬛️완료</span>
-                    </div>
                     <div id="toDoContent" class="side-board-content"></div>
                 </div>
             </div>
             <!--Bookmark-->
             <div id="bookmarkBoard" class="side-board">
                 <div id="bookmarkBoardInner" class="side-board-inner">
-                    <div class="side-board-title"><span>Bookmark</span></div>
+                    <div class="side-board-title"><span>BOOKMARK</span></div>
                     <div class="color-choice"></div>
                     <form id="bookmarkForm" class="js-form">
-                        <input id="bookmarkUrlInput" class="js-input bookmark-input" type="text" placeholder="🔗  Write an url">
-                        <input id="bookmarkNameInput"  class="js-input bookmark-input" type="text" placeholder="🟠  Write a name(max.6)">
+                        <input id="bookmarkUrlInput" class="js-input bookmark-input" type="text" placeholder="🔗 url">
+                        <input id="bookmarkNameInput"  class="js-input bookmark-input" type="text" placeholder="🔖 url name(max.6)">
                         <input id="bookmarkColorInput" type="hidden">
                         <input type="submit" class="js-submit" value="▶️">
                     </form>
@@ -61,9 +63,9 @@
             <!--World-->
             <div id="worldBoard" class="side-board">
                 <div id="worldBoardInner" class="side-board-inner">
-                    <div class="side-board-title"><span>World</span></div>
+                    <div class="side-board-title"><span>WORLD</span></div>
                     <form id="worldForm" class="js-form">
-                        <input id="worldInput" class="js-input" type="text" placeholder="Write an city name">
+                        <input id="worldInput" class="js-input" type="text" placeholder="🌏 city">
                         <input type="submit" class="js-submit" value="▶️">
                     </form>
                     <div id="worldContent" class="side-board-content"></div>
@@ -72,7 +74,7 @@
             <!--Setting-->
             <div id="settingBoard" class="side-board">
                 <div id="settingBoardInner" class="side-board-inner">
-                    <div class="side-board-title"><span>Setting</span></div>
+                    <div class="side-board-title"><span>SETTING</span></div>
                     <!--Background-->
                     <div id="settingBackground" class="setting-item">
                         <div class="setting-title"><span>Background</span></div>

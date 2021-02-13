@@ -1,6 +1,7 @@
 const settingBoard = document.querySelector("#settingBoard");
 const settingBackground = document.querySelector("#settingBackground");
 const settingBtn = document.querySelector("#settingBtn");
+const body = document.querySelector("body");
 
 let settingClick = 0;
 
@@ -17,9 +18,13 @@ function getRandom() {
 function paintBackground() {
     const themeSelected = localStorage.getItem(BACKGROUND_LS);
     console.log(themeSelected);
-    const body = document.querySelector("body");
-    const randomNumber = getRandom();
+    if (themeSelected !== null) {
+        const randomNumber = getRandom();
     body.style = `background-image: url("img/${themeSelected}/${themeSelected}${randomNumber + 1}.jpg");`;
+    }
+    else {
+        body.style = 'background-image: url("img/default.jpg")';
+    }
 }
 
 function handleClickTheme (event) {

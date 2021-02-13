@@ -1,22 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Suez+One&display=swap');
+
 body, html {
     height: 100%;
     overflow: hidden;
 }
 
 #container {
-    display: inline-flex;
+    display: block;
     height: 100%;
 }
 
 #bgText {
+    display: inline-block;
+    width: 92%;
     text-align: center;
+    
+}
+
+#bgTextInner{
+    display: block;
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 35px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 28%), 0 1px 5px 0 rgb(0 0 0 / 25%), 0 3px 1px -2px rgb(0 0 0 / 35%);
 }
 
 #sideMenu {
     display: inline-block;
-    width: max-content;
+    width: 7%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
     margin: 0 0;
 }
 
@@ -27,11 +45,12 @@ body, html {
     padding: 1rem;
     margin: 1rem;
     cursor: pointer;
-    border-radius: 2rem;
+    border-radius: 100%;
     text-align: center;
 }
 
 .side-menu-btn:hover {
+    background-color: rgba(255, 255, 255);
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 28%), 0 1px 5px 0 rgb(0 0 0 / 25%), 0 3px 1px -2px rgb(0 0 0 / 35%);
 }
 
@@ -74,18 +93,18 @@ body, html {
 
 .side-board-hide {
     visibility: hidden;
-    transform: translate3d(400px, 0, 0);
+    transform: translate3d(450px, 0, 0);
     transition: transform ease .35s;
 }
 
 .side-board-title {
     text-align: center;
     margin-top: 0.5rem;
+    font-family: 'Abril Fatface', cursive !important;
 }
 
 .side-board-title span{
     font-size: 2rem;
-    font-weight: 800;
     margin-bottom: 1rem;
 }
 
@@ -100,12 +119,21 @@ body, html {
     width: 300px;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
 }
+
 .js-submit {
     padding: 0.5rem;
     border: 2px solid #000000;
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 20px;
+    cursor: pointer;
 }
+
+.js-input:focus, .js-submit:hover {
+    background-color: rgb(255, 255, 255);
+}
+
 .button {
     padding: 0.5rem;
     cursor: pointer;

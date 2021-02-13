@@ -6,3 +6,4 @@ function getData(LS, list) {
         })
     }
 }
+
