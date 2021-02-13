@@ -62,7 +62,7 @@ function parseWeather(json) {
             },
             {
                 min_temp: json.daily[6].temp.min,
-                maxTemp: json.daily[6].temp.max,
+                max_temp: json.daily[6].temp.max,
                 main: json.daily[6].weather[0].main,
                 icon: json.daily[6].weather[0].icon 
             },

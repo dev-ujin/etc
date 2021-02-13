@@ -4,12 +4,18 @@
     display: inline-block;
     text-align: center;
     width: 100%;
-    margin-top: 0.5rem;
+    margin: 1rem 0;
 }
 
-#in-progress, #completed {
+#inProgress, #completed {
     margin-left: 1rem;
-    background-color: #e5e5e5;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.7rem;
+    font-weight: bold;
+}
+
+#inProgress:hover, #completed:hover {
+    background-color: rgba(255, 255, 255);
 }
 
 .todo {
@@ -17,10 +23,13 @@
     list-style: none;
     font-size: 1.0rem;
     padding: 1.0rem;
+    margin: 0.5rem;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .todo:hover {
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 28%), 0 1px 5px 0 rgb(0 0 0 / 25%), 0 3px 1px -2px rgb(0 0 0 / 35%);
 }
 
 .check-box {

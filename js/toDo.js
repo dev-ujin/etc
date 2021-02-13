@@ -4,35 +4,38 @@ const toDoForm = document.querySelector("#toDoForm");
 const toDoInput = document.querySelector("#toDoInput");
 const toDoSubmit = document.querySelector("#toDoSubmit");
 const toDoBtn = document.querySelector("#toDoBtn");
-const inProgressBtn = document.querySelector("#in-progress");
+const inProgressBtn = document.querySelector("#inProgress");
 const completedBtn = document.querySelector("#completed");
 const SHOW = "side-board-show";
 const HIDE = "side-board-hide";
 const TODOS_LS = "toDos";
 
 let toDos = [];
+let countToDo;
 let toDoClick = 0;
 let mode = 0; //if mode is 0, it means in progress
 
 function findToDo(id) {
     const parsedToDos = JSON.parse(localStorage.getItem(TODOS_LS));
-    if (parsedToDos != null) {
+    let toDo;
+    if (parsedToDos !== null) {
         parsedToDos.forEach(function (parsedToDo) {
-            if (parsedToDo.id == id) {
-                const toDo = {
-                    id: id,
+            if (parsedToDo.id === id) {
+                 toDo = {
+                    id: parsedToDo.id,
                     text: parsedToDo.text,
                     status: parsedToDo.status
                 };
-                return toDo;
+                console.log(toDo);
             }
         });
     }
+    return toDo;
 }
 
 function filterToDo(id) {
     const cleanToDos = toDos.filter(function(toDo) {
-        return toDo.id !== parseInt(id);
+        return toDo.id !== id;
     });
     toDos = cleanToDos;
     saveToDos();
@@ -45,10 +48,10 @@ function saveToDos() {
 function handleClickCheckBox(event) {
     const li = event.target.parentNode;
     toDoContent.removeChild(li);
-    const deletedToDo = findToDo(li.id);
+    const deletedToDo = findToDo(parseInt(li.id));
     filterToDo(deletedToDo.id);
-    const newToDo = {
-        id: parseInt(deletedToDo.id),
+    let newToDo = {
+        id: deletedToDo.id,
         text: deletedToDo.text,
         status: Math.abs(deletedToDo.status - 1)
     };
@@ -59,7 +62,7 @@ function handleClickCheckBox(event) {
 function handleClickDeleteBtn(event) {
     const li = event.target.parentNode;
     toDoContent.removeChild(li);
-    filterToDo(li.id);
+    filterToDo(parseInt(li.id));
 }
 
 function paintToDo (toDo) {
@@ -74,13 +77,11 @@ function paintToDo (toDo) {
     toDoText.classList.add("todo-text");
     delBtn.classList.add("delete-btn");
 
-    if (toDo.status == 0) {
+    if (toDo.status === 0) {
         checkBox.innerText = "⬜️";
-        checkBox.classList.add("0");
     }
-    else if (toDo.status == 1) {
+    else if (toDo.status === 1) {
         checkBox.innerText = "⬛️";
-        checkBox.classList.add("1");
     }
     checkBox.addEventListener("click", handleClickCheckBox);
     delBtn.addEventListener("click", handleClickDeleteBtn);
@@ -96,9 +97,9 @@ function paintToDo (toDo) {
 function loadToDos(status) {
     console.log(typeof(status));
     const parsedToDos = JSON.parse(localStorage.getItem(TODOS_LS));
-    if (parsedToDos != null) {
+    if (parsedToDos !== null) {
         parsedToDos.forEach(function(toDo) {
-            if (toDo.status == status) {
+            if (toDo.status === status) {
                 paintToDo(toDo);
             }
         });
@@ -106,6 +107,12 @@ function loadToDos(status) {
 }
 
 function drawToDoBoard() {
+    if (toDos.length === 0) {
+        countToDo = 0;
+    }
+    else {
+        countToDo = toDos[toDos.length - 1].id + 1;
+    }
     loadToDos(0);
     toDoBoard.classList.add(HIDE);
 }
@@ -125,10 +132,11 @@ function handleClickToDo() {
 function handleSubmitToDo(event) {
     event.preventDefault();
     const toDo = {
-        id: toDos.length+1,
+        id: countToDo,
         text: toDoInput.value,
-        status: 0, //0: in-progress, 1: completed
+        status: 0, //0: inProgress, 1: completed
     };
+    countToDo++;
     paintToDo(toDo);
     toDos.push(toDo);
     saveToDos();
@@ -137,14 +145,13 @@ function handleSubmitToDo(event) {
 
 function handleClickStatus(event) {
     console.log(event.target);
-    if (event.target.id == "in-progress") {
+    if (event.target.id === "inProgress") {
         toDoContent.textContent = "";
         loadToDos(0);
         toDoInput.style = "visibility: visible;";
         toDoSubmit.style = "visibility: visible;";
-
     }
-    else if (event.target.id == "completed") {
+    else if (event.target.id === "completed") {
         toDoContent.textContent = "";
         loadToDos(1);
         toDoInput.style = "visibility: hidden;";
