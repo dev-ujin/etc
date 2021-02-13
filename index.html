@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="css/toDo.css">
     <link rel="stylesheet" href="css/bookmark.css">
     <link rel="stylesheet" href="css/world.css">
+    <link rel="stylesheet" href="css/background.css">
 </head>
-<body>
+<body id="body">
     <div id="container">
         <div id="sideMenu">
             <div id="toDoBtn" class="side-menu-btn"><i class="fas fa-clipboard-list"></i></div>
@@ -68,6 +69,16 @@
                     <div id="worldContent" class="side-board-content"></div>
                 </div>
             </div>
+            <!--Setting-->
+            <div id="settingBoard" class="side-board">
+                <div id="settingBoardInner" class="side-board-inner">
+                    <div class="side-board-title"><span>Setting</span></div>
+                    <!--Background-->
+                    <div id="settingBackground" class="setting-item">
+                        <div class="setting-title"><span>Background</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>
@@ -76,5 +87,6 @@
     <script src="js/toDo.js"></script>
     <script src="js/bookmark.js"></script>
     <script src="js/world.js"></script>
+    <script src="js/background.js"></script>
 </body>
 </html>

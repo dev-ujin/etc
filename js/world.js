@@ -16,9 +16,9 @@ function saveWorlds() {
 function saveBuffer() {
     localStorage.setItem(BUFFER_LS, JSON.stringify(buffer));
 }
-function filterWorld(id) {
+function filterWorld(lat, lon, id) {
     const cleanWorlds = worlds.filter(function(world) {
-        return world.id !== parseInt(id);
+        return ((world.lat !== parseInt(lat)) && (world.lon !== parseInt(lon)) && (world.id !== parseInt(id)));
     });
     worlds = cleanWorlds;
     saveWorlds();
@@ -113,18 +113,18 @@ function getWeather(world, currentDes, currentIcon, li) {
         return response.json();
     })
     .then(function(json) {
-        console.log(json);
+        //console.log(json);
         currentDes.textContent = `${json.current.temp}`;
         currentIcon.appendChild(currentDes);
         currentIcon.style = `background-image: url("http://openweathermap.org/img/wn/${json.current.weather[0].icon}@2x.png");`;
             
         const parsedWorlds = JSON.parse(localStorage.getItem(BUFFER_LS));
         parsedWorlds.forEach(function (world) {
-            console.log(world.id);
+            //console.log(world.id);
             if ((world.lat === json.lat) && (world.lon === json.lon)) {
                 if (world.id === json.daily[0].dt) {
                     for (let i=0 ; i<7 ; i++) {
-                        console.log("her");
+                        //console.log("her");
                         const daily = document.createElement("div");
                         const dailyDes = document.createElement("div");
                         daily.classList.add("daily-icon");
@@ -138,7 +138,7 @@ function getWeather(world, currentDes, currentIcon, li) {
                     }
                 }
                 else {
-                    filterWorld(world.id);
+                    filterWorld(world.lat, world.lon, world.id);
                     buffer.push(parseWeather(json));
                     saveBuffer();
                 }
@@ -211,7 +211,7 @@ function getTimeZone(oldWorld) {
             timezone: json.timezone,
             timezone_offset: json.timezone_offset,
         };
-        console.log(json);
+        //console.log(json);
         filterWorld(oldWorld.id);
         worlds.push(world);
         saveWorlds(worlds);
@@ -255,8 +255,8 @@ function getGeolocation(cityName) {
             lat: json[0].lat,
             lon: json[0].lon,
         };
-        console.log("heyyy");
-        console.log(world.name);
+        //console.log("heyyy");
+        //console.log(world.name);
         worlds.push(world);
         saveWorlds();
         getTimeZone(world);
