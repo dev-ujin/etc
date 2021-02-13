@@ -1,28 +1,62 @@
 const settingBoard = document.querySelector("#settingBoard");
 const settingBackground = document.querySelector("#settingBackground");
-const backgroundForm = document.querySelector("#backgkroundForm");
 const settingBtn = document.querySelector("#settingBtn");
 
 let settingClick = 0;
 
-const BACKGROUNDS_LS = "backgrounds";
+const BACKGROUND_LS = "background";
+const THEME = ["Morocco", "Korea", "Germany", "Netherland", "Spain", "Switzerland", "Japan", "Czech"];
+const IMG_NUM = 5;
 
+
+function getRandom() {
+    const number = Math.floor(Math.random() * IMG_NUM);
+    return number;
+}
+
+function paintBackground() {
+    const themeSelected = localStorage.getItem(BACKGROUND_LS);
+    console.log(themeSelected);
+    const body = document.querySelector("body");
+    const randomNumber = getRandom();
+    body.style = `background-image: url("img/${themeSelected}/${themeSelected}${randomNumber + 1}.jpg");`;
+}
+
+function handleClickTheme (event) {
+    const themes = document.querySelectorAll(".theme");
+    const themeSelected = event.target.parentNode;
+    themes.forEach(function (theme) {
+        if (theme.id !== themeSelected.id) {
+            theme.classList.remove("theme-selected");
+        }
+        else {
+            theme.classList.add("theme-selected");
+        }
+    });
+    localStorage.setItem(BACKGROUND_LS, themeSelected.id);
+    paintBackground();
+}
 
 function drawBackgroundBoard() {
-    //리스트업
-    const backgroundTheme = ["Morocco", "Korea", "Germany", "Netherland", "Spain", "Switzerland"];
-    //아이콘 만들기
-    for (let i=0 ; i<backgroundTheme.length ; i++) {
+    const themeSelected = localStorage.getItem(BACKGROUND_LS);
+    console.log(themeSelected);
+    for (let i=0 ; i<THEME.length ; i++) {
         const div = document.createElement("div");
         const themeIcon = document.createElement("div");
         const themeDes = document.createElement("div");
 
         div.classList.add("theme");
+        div.id = THEME[i];
         themeIcon.classList.add("theme-icon");
         themeDes.classList.add("theme-des");
+        if (themeSelected === THEME[i]) {
+            div.classList.add("theme-selected");
+        }
 
-        themeIcon.style = `background-image: url("img/${backgroundTheme[i]}/${backgroundTheme[i]}1.jpg")`;
-        themeDes.textContent = backgroundTheme[i];
+        themeIcon.style = `background-image: url("img/${THEME[i]}/${THEME[i]}1.jpg")`;
+        themeDes.textContent = THEME[i];
+        div.addEventListener("click", handleClickTheme);
+
         div.appendChild(themeIcon);
         div.appendChild(themeDes);
         settingBackground.appendChild(div);
@@ -49,9 +83,9 @@ function handleClickSetting() {
 }
 
 function init() {
+    paintBackground();
     drawSettingBoard();
     settingBtn.addEventListener("click", handleClickSetting);
-    //backgroundForm.addEventListener("submit", handleClickBackgroundSubmit);
 
 }
 

@@ -14,7 +14,6 @@ function saveBookmarks() {
 
 function handleClickColorBall(event) {
     const bookmarkColorInput = document.querySelector("#bookmarkColorInput");
-    const colorCode = event.target.id;
     const colorBalls = document.querySelectorAll(".color-ball");
     colorBalls.forEach(function (colorBall) {
         if (colorBall.id !== event.target.id) {
