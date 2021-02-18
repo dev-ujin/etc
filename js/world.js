@@ -2,7 +2,6 @@ const worldBtn = document.querySelector("#worldBtn");
 const worldBoard = document.querySelector("#worldBoard");
 const worldForm = document.querySelector("#worldForm");
 const worldContent = document.querySelector("#worldContent");
-const OW_API_KEY = "7b8adccf6fa5d5de6b821189b2574b14";
 const WORLDS_LS = "worlds";
 const BUFFER_LS = "worlds_buffer";
 
