@@ -228,7 +228,7 @@ function getTimeZone(oldWorld) {
 
 function getGeolocation(cityName) {
     fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${OW_API_KEY}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${OW_API_KEY}`
     ).then(function(response) {
         return response.json();
     })
