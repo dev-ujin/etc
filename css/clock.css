@@ -1,5 +1,5 @@
 #clock {
     font-size: 5rem;
     font-weight: 800;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif !important;
 }
