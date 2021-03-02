@@ -4,7 +4,7 @@ const worldForm = document.querySelector("#worldForm");
 const worldContent = document.querySelector("#worldContent");
 const WORLDS_LS = "worlds";
 const BUFFER_LS = "worlds_buffer";
-
+const OW_API_KEY = key.OPENWEATHER_API;
 let worlds = [];
 let buffer = [];
 let worldClick = 0;
